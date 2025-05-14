@@ -1,0 +1,193 @@
+<!DOCTYPE html> 
+<html lang="es-PE" class="dark">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>PredictorPro – Página principal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Activar tema oscuro por clase
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 transition-colors relative">
+  <!-- Logotipo -->
+  <div class="absolute top-4 left-4 z-20">
+    <a href="input.html">
+      <img
+        src="images/PredictorPro.jpg"
+        alt="PredictorPro"
+        class="w-48 h-48 rounded-full border-4 border-green-700"
+      />
+    </a>
+  </div>
+
+  <!-- Interruptor de tema -->
+  <div class="absolute top-4 right-4 z-20">
+    <button
+      id="themeToggle"
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow transition-colors"
+      onclick="toggleTheme()"
+      aria-label="Cambiar tema"
+    >🌙</button>
+  </div>
+
+  <main class="flex flex-col items-center pt-56 sm:pt-28 pb-24">
+    <div class="w-full max-w-[58rem]">
+      <!-- Cuadrícula de botones de juegos -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-24">
+        <!-- Aviador -->
+        <div class="flex flex-col items-center">
+          <a href="aviator.html"
+             class="w-full sm:w-40 aspect-square bg-black rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors z-10">
+            <img src="images/awiator-1win.png" alt="Aviador" class="w-full h-full object-contain"/>
+          </a>
+          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Aviador</span>
+        </div>
+        <!-- Penalti -->
+        <div class="flex flex-col items-center">
+          <a href="penalty.html"
+             class="w-full sm:w-40 aspect-square bg-blue-200 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
+            <img src="images/penaltyshootoutstreet_logo.png" alt="Penalti" class="w-full h-full object-contain"/>
+          </a>
+          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Penalti</span>
+        </div>
+        <!-- Minas -->
+        <div class="flex flex-col items-center">
+          <a href="mines.html"
+             class="w-full sm:w-40 aspect-square bg-white rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
+            <img src="images/images.jpg" alt="Minas" class="w-full h-full object-cover"/>
+          </a>
+          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Minas</span>
+        </div>
+        <!-- Manzanas de la Fortuna -->
+        <div class="flex flex-col items-center">
+          <a href="apple-of-fortune.html"
+             class="w-full sm:w-40 aspect-square bg-white rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
+            <img src="images/unnamed.png" alt="Manzanas de la Fortuna" class="w-full h-full object-contain"/>
+          </a>
+          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Manzanas de la Fortuna</span>
+        </div>
+      </div>
+
+      <!-- Noticias del proyecto -->
+      <h2 class="mt-16 text-xl font-semibold text-center text-black dark:text-white">
+        Noticias del proyecto
+      </h2>
+      <div class="mt-6 space-y-6">
+        <!-- Noticia 0: Victoria histórica de Jorge Reyes -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            ¡Hermanoooos, victoria histórica de Jorge Reyes!
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">13.05.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <img src="images/vot8fd10b8.png" alt="Jorge con su nuevo auto" class="w-full mb-4 rounded" />
+            <p class="mb-2">
+              ¡Hermanoooos, hoy es fiesta total! 🎉 Quiero felicitar a mi alumno, mi amigo y mi hermano del alma — Jorge Reyes de Trujillo, que acaba de ganar el premio más grande en la historia de PredictorPro: ¡2 000 000 PEN! 😱💰
+            </p>
+            <p class="mb-2">
+              Jorge estuvo conmigo desde el inicio. Era chofer y apenas le alcanzaba para el alquiler. Pero no se quejaba — escuchaba, aprendía y seguía las señales. Sin inventar nada. Y hoy, hermanos... ¡lo logró!
+            </p>
+            <p class="mb-2">
+              🎁 En honor a su victoria, le regalo un auto nuevo, con las llaves entregadas en mano. Porque se lo merece, ¡carajo!
+            </p>
+            <p class="mb-2">
+              🔥 Y para todos mis hermanos del canal, lanzo la semana del agradecimiento:<br>
+              ✅ Si recargas desde 50 PEN, recibes +500 PEN de regalo<br>
+              ⏳ Solo por 7 días. Solo para mi gente. Solo desde aquí.
+            </p>
+            <p>
+              Esto no es suerte. Es trabajo, fe y decisiones correctas. Jorge ya ganó. ¿Y tú? Es tu momento.
+            </p>
+          </div>
+        </div>
+        <!-- Noticia 1: Aniversario del proyecto PredictorPro -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            Aniversario del proyecto PredictorPro
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">10.05.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mb-2">
+              ¡Nuestro proyecto PredictorPro cumple un año! En este tiempo, cientos de participantes lograron resultados extraordinarios, cambiaron su vida y empezaron a ganar sumas importantes. Gracias a todos por su apoyo: ahora somos una gran familia que apunta a nuevas metas. Para celebrar, PredictorPro será gratuito durante todo un mes. ¡Les deseamos mucha suerte y grandes victorias!
+            </p>
+          </div>
+        </div>
+        <!-- Noticia 2: Actualización del juego “Minas” -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            Actualización del juego «Minas»
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">08.05.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            Hoy mejoramos sustancialmente el sistema de predicciones para «Minas». Gracias a un análisis profundo de datos, nuestra precisión alcanza el 97 %. ¡Compruébalo tú mismo!
+          </div>
+        </div>
+        <!-- Noticia 3: Anuncio de la nueva función “Historial de apuestas” -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            Anuncio de la nueva función «Historial de apuestas»
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">06.05.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            Lanzamos «Historial de apuestas»: ahora puedes revisar y analizar todas tus predicciones de cada sesión en un solo lugar.
+          </div>
+        </div>
+        <!-- Noticia 4: Desarrollo de la aplicación móvil PredictorPro -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            Desarrollo de la aplicación móvil PredictorPro
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">04.05.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            Estamos desarrollando activamente la aplicación móvil PredictorPro. Lanzamiento previsto: 28 de mayo de 2025.
+          </div>
+        </div>
+        <!-- Noticia 5: Actualización de UI/UX: nuevos temas de diseño -->
+        <div>
+          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+            Actualización de UI/UX: nuevos temas de diseño
+          </button>
+          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">30.04.2025</p>
+          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            Hemos renovado la interfaz: añadimos nuevos esquemas de color, mejoramos la navegación y optimizamos los controles para una experiencia más cómoda.
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Botón de chat de soporte -->
+  <a href="https://t.me/Pedro_PredictorPro_bot"
+     class="absolute bottom-4 right-4 bg-gray-200 dark:bg-gray-800 p-2 rounded-full border-4 border-green-700 transition-colors z-20"
+     target="_blank" rel="noopener noreferrer">
+    <img
+      src="images/—Pngtree—technical support_3767452.png"
+      alt="Soporte"
+      class="w-16 h-16 filter dark:invert"
+    />
+  </a>
+
+  <script>
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      themeToggle.textContent =
+        document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+    }
+    document.documentElement.classList.add('dark');
+
+    document.querySelectorAll('.toggle-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        btn.nextElementSibling.nextElementSibling.classList.toggle('hidden');
+      });
+    });
+  </script>
+</body>
+</html>

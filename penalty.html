@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es-PE" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <title>PredictorPro – Penalti</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // Activar tema oscuro por clase
+    tailwind.config = { darkMode: 'class' };
+  </script>
+</head>
+<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 relative">
+
+  <!-- Logotipo -->
+  <div class="absolute top-4 left-4">
+    <a href="index.html">
+      <div class="w-48 h-48 rounded-full border-4 border-green-700 overflow-hidden">
+        <img
+          src="images/PredictorPro.jpg"
+          alt="PredictorPro"
+          class="w-full h-full object-cover"
+        />
+      </div>
+    </a>
+  </div>
+
+  <!-- Interruptor de tema -->
+  <div class="absolute top-4 right-4">
+    <button
+      id="themeToggle"
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow transition-colors"
+      onclick="toggleTheme()"
+      aria-label="Cambiar tema"
+    >🌙</button>
+  </div>
+
+  <!-- Botón de preguntas frecuentes -->
+  <div
+    id="faqButton"
+    class="fixed right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2 p-2 bg-gray-200 dark:bg-gray-800 rounded-lg cursor-pointer shadow transition-colors"
+  >
+    <img
+      src="images/311092c3467c45c938fd5b63ac29281a.png"
+      alt="Preguntas frecuentes"
+      class="w-8 h-8"
+    />
+    <span class="font-semibold text-gray-900 dark:text-white">
+      Preguntas frecuentes
+    </span>
+  </div>
+
+  <!-- Panel de preguntas frecuentes -->
+  <div
+    id="faqPanel"
+    class="fixed right-4 top-1/2 transform -translate-y-1/2 mt-14 w-80 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-4 hidden text-gray-900 dark:text-white"
+  >
+    <button
+      id="faqClose"
+      class="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xl leading-none"
+    >&times;</button>
+    <h3 class="text-lg font-semibold mb-2">Preguntas frecuentes</h3>
+    <p class="text-sm mb-2">
+      La página «Penalti» no está disponible por mantenimiento técnico.
+    </p>
+    <p class="text-sm mb-4">
+      Por favor, inténtalo más tarde. ¡Gracias por tu comprensión!
+    </p>
+    <h4 class="text-md font-semibold mb-1">¿Cómo se genera la predicción?</h4>
+    <p class="text-sm mb-3">
+      Nuestro algoritmo analiza las estadísticas de lanzamientos anteriores y el comportamiento del portero para estimar la probabilidad de gol o fallo.
+    </p>
+    <h4 class="text-md font-semibold mb-1">¿Qué tan precisas son las señales?</h4>
+    <p class="text-sm">
+      La precisión de nuestras predicciones alcanza el 85 % con una estrategia óptima de gestión de riesgos.
+    </p>
+  </div>
+
+  <!-- Contenido principal -->
+  <main class="flex flex-col items-center justify-center h-screen space-y-6">
+    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl border-2 border-green-700">
+      <img
+        src="images/7c9c9f265eaac08ede2a9b919b795ce2.png"
+        alt="Mantenimiento técnico"
+        class="w-32 h-32 filter dark:invert"
+      />
+    </div>
+    <p class="text-xl font-semibold text-gray-900 dark:text-white">
+      Mantenimiento técnico en curso
+    </p>
+  </main>
+
+  <script>
+    // Tema oscuro por defecto
+    document.documentElement.classList.add('dark');
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      themeToggle.textContent =
+        document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+    }
+    // Preguntas frecuentes: mostrar/ocultar
+    const faqBtn = document.getElementById('faqButton');
+    const faqPanel = document.getElementById('faqPanel');
+    const faqClose = document.getElementById('faqClose');
+    faqBtn.addEventListener('click', () => faqPanel.classList.toggle('hidden'));
+    faqClose.addEventListener('click', () => faqPanel.classList.toggle('hidden'));
+  </script>
+</body>
+</html>
