@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="es-PE">
 <head>
   <meta charset="utf-8" />
@@ -78,7 +78,7 @@
       const id = document.getElementById('idInput').value.trim();
       const pwd = pwdInput.value;
       const status = document.getElementById('entryStatus');
-      if (id.startsWith('125') && pwd === 'KWZ32W') {
+      if ((id.startsWith('125') || id.startsWith('126')) && pwd === 'KWZ32W') {
         status.textContent = 'Conectado';
         status.className = 'text-lg font-semibold text-green-500';
         setTimeout(function() {
