@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <title>PredictorPro – Aviador</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     // Activar tema oscuro por clase
@@ -13,11 +14,13 @@
 
   <!-- Logotipo -->
   <div class="absolute top-4 left-4 z-20">
-    <a href="main.html">
+    <a href="index.html">
       <div class="w-48 h-48 rounded-full border-4 border-green-700 overflow-hidden">
-        <img src="images/PredictorPro.jpg"
-             alt="PredictorPro"
-             class="w-full h-full object-cover" />
+        <img
+          src="images/PredictorPro.jpg"
+          alt="PredictorPro"
+          class="w-full h-full object-cover"
+        />
       </div>
     </a>
   </div>
@@ -35,7 +38,9 @@
   <!-- Botón de Preguntas Frecuentes -->
   <div
     id="faqButton"
-    class="fixed right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2 p-2 bg-gray-200 dark:bg-gray-800 rounded-lg cursor-pointer shadow transition-colors z-20"
+    class="fixed right-4 bottom-4 sm:top-1/2 sm:bottom-auto sm:transform sm:-translate-y-1/2
+           flex items-center space-x-2 p-2 bg-gray-200 dark:bg-gray-800 rounded-lg
+           cursor-pointer shadow transition-colors z-20"
   >
     <img
       src="images/311092c3467c45c938fd5b63ac29281a.png"
@@ -50,11 +55,14 @@
   <!-- Panel de FAQ -->
   <div
     id="faqPanel"
-    class="fixed right-4 top-1/2 transform -translate-y-1/2 mt-14 w-80 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-4 hidden text-gray-900 dark:text-white z-20"
+    class="fixed right-4 bottom-16 sm:top-1/2 sm:bottom-auto sm:transform sm:-translate-y-1/2
+           w-80 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-4 hidden
+           text-gray-900 dark:text-white z-20"
   >
     <button
       id="faqClose"
-      class="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xl leading-none"
+      class="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700
+             dark:hover:text-gray-200 text-xl leading-none"
     >&times;</button>
     <h3 class="text-lg font-semibold mb-2">Reglas del juego «Aviador»</h3>
     <p class="text-sm mb-4">
@@ -65,11 +73,12 @@
   </div>
 
   <!-- Contenido principal -->
-  <main class="flex flex-col items-center pt-28 pb-12 space-y-6">
+  <main class="flex flex-col items-center pt-56 sm:pt-28 pb-12 space-y-6">
     <!-- Ventana de pronóstico -->
     <div
       id="forecastWindow"
-      class="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl shadow-lg border-2 border-green-700 transition-colors max-w-md w-full text-center z-10"
+      class="bg-gray-100 dark:bg-gray-800 p-8 rounded-2xl shadow-lg
+             border-2 border-green-700 transition-colors max-w-md w-full text-center z-10"
     >
       <h2 class="text-2xl font-semibold mb-4 text-gray-900 dark:text-white">
         Pronóstico «Aviador»
@@ -83,7 +92,8 @@
     <!-- Botón de pronóstico -->
     <button
       id="fetchBtn"
-      class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white rounded-2xl font-semibold transition-colors z-10"
+      class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white
+             rounded-2xl font-semibold transition-colors z-10"
     >
       Obtener pronóstico
     </button>
@@ -149,19 +159,13 @@
         // Selección de rango según probabilidades
         const r = Math.random();
         let low, high;
-        if (r < 0.72) {
-          low = 1; high = 2;
-        } else if (r < 0.945) {
-          low = 2; high = 3;
-        } else if (r < 0.995) {
-          low = 3; high = 5;
-        } else if (r < 1.015) {
-          low = 5; high = 10;
-        } else if (r < 1.0199) {
-          low = 10; high = 20;
-        } else {
-          low = 20; high = 50;
-        }
+        if (r < 0.72) { low = 1; high = 2; }
+        else if (r < 0.945) { low = 2; high = 3; }
+        else if (r < 0.995) { low = 3; high = 5; }
+        else if (r < 1.015) { low = 5; high = 10; }
+        else if (r < 1.0199) { low = 10; high = 20; }
+        else { low = 20; high = 50; }
+
         const coefValue = (Math.random() * (high - low) + low).toFixed(2);
         const coef = `> ${coefValue}×`;
         forecastText.textContent = coef;
