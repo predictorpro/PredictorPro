@@ -2,6 +2,7 @@
 <html lang="es-PE" class="dark">
 <head>
   <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>PredictorPro – Penalti</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -12,20 +13,16 @@
 <body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 relative">
 
   <!-- Logotipo -->
-  <div class="absolute top-4 left-4">
+  <div class="absolute top-4 left-4 z-20">
     <a href="main.html">
       <div class="w-48 h-48 rounded-full border-4 border-green-700 overflow-hidden">
-        <img
-          src="images/PredictorPro.jpg"
-          alt="PredictorPro"
-          class="w-full h-full object-cover"
-        />
+        <img src="images/PredictorPro.jpg" alt="PredictorPro" class="w-full h-full object-cover"/>
       </div>
     </a>
   </div>
 
   <!-- Interruptor de tema -->
-  <div class="absolute top-4 right-4">
+  <div class="absolute top-4 right-4 z-20">
     <button
       id="themeToggle"
       class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow transition-colors"
@@ -34,10 +31,12 @@
     >🌙</button>
   </div>
 
-  <!-- Botón de preguntas frecuentes -->
+  <!-- Botón de Preguntas Frecuentes -->
   <div
     id="faqButton"
-    class="fixed right-4 top-1/2 transform -translate-y-1/2 flex items-center space-x-2 p-2 bg-gray-200 dark:bg-gray-800 rounded-lg cursor-pointer shadow transition-colors"
+    class="fixed right-4 bottom-4 sm:top-1/2 sm:bottom-auto sm:transform sm:-translate-y-1/2
+           flex items-center space-x-2 p-2 bg-gray-200 dark:bg-gray-800 rounded-lg
+           cursor-pointer shadow transition-colors z-20"
   >
     <img
       src="images/311092c3467c45c938fd5b63ac29281a.png"
@@ -49,60 +48,202 @@
     </span>
   </div>
 
-  <!-- Panel de preguntas frecuentes -->
+  <!-- Panel de FAQ -->
   <div
     id="faqPanel"
-    class="fixed right-4 top-1/2 transform -translate-y-1/2 mt-14 w-80 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-4 hidden text-gray-900 dark:text-white"
+    class="fixed right-4 bottom-16 sm:top-1/2 sm:bottom-auto sm:transform sm:-translate-y-1/2
+           w-80 bg-gray-100 dark:bg-gray-900 rounded-lg shadow-lg p-4 hidden
+           text-gray-900 dark:text-white z-20"
   >
     <button
       id="faqClose"
-      class="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-xl leading-none"
+      class="absolute top-2 right-2 text-gray-500 dark:text-gray-400 hover:text-gray-700
+             dark:hover:text-gray-200 text-xl leading-none"
     >&times;</button>
-    <h3 class="text-lg font-semibold mb-2">Preguntas frecuentes</h3>
-    <p class="text-sm mb-2">
-      La página «Penalti» no está disponible por mantenimiento técnico.
-    </p>
-    <p class="text-sm mb-4">
-      Por favor, inténtalo más tarde. ¡Gracias por tu comprensión!
-    </p>
+    <h3 class="text-lg font-semibold mb-2">Reglas del juego «Penalti»</h3>
     <h4 class="text-md font-semibold mb-1">¿Cómo se genera la predicción?</h4>
     <p class="text-sm mb-3">
-      Nuestro algoritmo analiza las estadísticas de lanzamientos anteriores y el comportamiento del portero para estimar la probabilidad de gol o fallo.
+      Nuestro algoritmo analiza estadísticas de lanzamientos anteriores y observa la posición y reacción del portero para asignar probabilidades de gol o fallo. Luego selecciona al azar uno de los quince balones como «ganador».
     </p>
     <h4 class="text-md font-semibold mb-1">¿Qué tan precisas son las señales?</h4>
     <p class="text-sm">
-      La precisión de nuestras predicciones alcanza el 85 % con una estrategia óptima de gestión de riesgos.
+      Con una gestión de riesgos adecuada, nuestra tasa de acierto alcanza hasta un 85 %. Recuerde siempre fijar sus ganancias a tiempo.
     </p>
   </div>
 
   <!-- Contenido principal -->
-  <main class="flex flex-col items-center justify-center h-screen space-y-6">
-    <div class="p-6 bg-gray-100 dark:bg-gray-800 rounded-2xl border-2 border-green-700">
-      <img
-        src="images/7c9c9f265eaac08ede2a9b919b795ce2.png"
-        alt="Mantenimiento técnico"
-        class="w-32 h-32 filter dark:invert"
-      />
+  <main class="flex flex-col items-center pt-56 sm:pt-32 pb-12 space-y-6">
+    <!-- Barra de progreso -->
+    <div class="w-full max-w-md">
+      <div class="relative mb-4">
+        <div class="h-2 bg-gray-300 dark:bg-gray-700 rounded-full">
+          <div id="progressFill" class="h-2 bg-green-700 rounded-full w-0 transition-all"></div>
+        </div>
+        <div class="absolute inset-0 flex justify-between items-center">
+          <div class="flex flex-col items-center">
+            <div id="dot1" class="w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+            <span class="text-sm mt-1">×2</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div id="dot2" class="w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+            <span class="text-sm mt-1">×4</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div id="dot3" class="w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+            <span class="text-sm mt-1">×12</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div id="dot4" class="w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+            <span class="text-sm mt-1">×20</span>
+          </div>
+          <div class="flex flex-col items-center">
+            <div id="dot5" class="w-3 h-3 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+            <span class="text-sm mt-1">×32</span>
+          </div>
+        </div>
+      </div>
     </div>
-    <p class="text-xl font-semibold text-gray-900 dark:text-white">
-      Mantenimiento técnico en curso
-    </p>
+
+    <!-- Ventana de pronóstico -->
+    <div
+      id="forecastWindow"
+      class="relative bg-gray-100 dark:bg-gray-800 p-6 rounded-2xl shadow-lg
+             border-2 border-green-700 transition-colors w-full max-w-md h-64 overflow-hidden"
+    >
+      <!-- Fondo de la portería -->
+      <div class="absolute inset-0 bg-no-repeat bg-center opacity-20"
+           style="background-image: url('images/vecteezy_soccer-goal-illustration_45757623.png'); background-size: 110% 195%;">
+      </div>
+
+      <!-- Overlay oscuro + mensaje -->
+      <div
+        id="loadingText"
+        class="absolute inset-0 z-30 flex items-center justify-center
+               bg-black bg-opacity-50 text-center px-4 text-lg font-semibold text-white
+               opacity-0 transition-opacity"
+      ></div>
+
+      <!-- Rejilla de balones -->
+      <div
+        id="ballsGrid"
+        class="relative z-10 grid grid-cols-5 grid-rows-3 gap-8 justify-items-center items-center mt-4
+               divide-x divide-y divide-gray-300 dark:divide-gray-700"
+      >
+        <!-- 15 balones -->
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h/full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+        <div class="w-8 h-8 rounded-full overflow-hidden"><img src="images/3120e1b79749213597f4fe30a60211df.png" alt="Balón" class="w-full h-full object-cover"/></div>
+      </div>
+    </div>
+
+    <!-- Contenedor de botones -->
+    <div class="flex space-x-2">
+      <!-- Botón principal -->
+      <button
+        id="fetchBtn"
+        class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white
+               rounded-2xl font-semibold transition-colors"
+      >
+        Obtener señal
+      </button>
+      <!-- Botón de recarga -->
+      <button
+        id="resetBtn"
+        class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-lg
+               flex items-center justify-center shadow transition-colors"
+        aria-label="Reiniciar señales"
+      >
+        <img src="images/7646bf17f356f37147352829310cbf50.png" alt="Recargar" class="w-6 h-6"/>
+      </button>
+    </div>
   </main>
 
   <script>
-    // Tema oscuro por defecto
-    document.documentElement.classList.add('dark');
+    // Tema oscuro
     function toggleTheme() {
       document.documentElement.classList.toggle('dark');
-      themeToggle.textContent =
-        document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+      themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
     }
-    // Preguntas frecuentes: mostrar/ocultar
+    document.documentElement.classList.add('dark');
+
+    // FAQ show/hide
     const faqBtn = document.getElementById('faqButton');
     const faqPanel = document.getElementById('faqPanel');
     const faqClose = document.getElementById('faqClose');
     faqBtn.addEventListener('click', () => faqPanel.classList.toggle('hidden'));
     faqClose.addEventListener('click', () => faqPanel.classList.toggle('hidden'));
+
+    // Mensajes
+    const MSG_ROUND = "Espere, obteniendo datos para la siguiente ronda";
+    const MSG_RESET = "Espere, preparando base para nuevas señales";
+
+    // Elementos
+    const fetchBtn     = document.getElementById('fetchBtn');
+    const resetBtn     = document.getElementById('resetBtn');
+    const progressFill = document.getElementById('progressFill');
+    const loadingText  = document.getElementById('loadingText');
+    const balls        = Array.from(document.querySelectorAll('#ballsGrid > div'));
+    const MAX_STEPS    = 5;
+    let step = 0;
+
+    // Obtener señal (sin delay)
+    fetchBtn.addEventListener('click', () => {
+      balls.forEach(b => b.classList.remove('invisible'));
+      loadingText.textContent = MSG_ROUND;
+      loadingText.classList.add('opacity-100');
+
+      const winner = Math.floor(Math.random() * balls.length);
+      balls.forEach((b,i) => { if (i !== winner) b.classList.add('invisible'); });
+
+      step++;
+      const dot = document.getElementById(`dot${step}`);
+      dot.classList.remove('bg-gray-300','dark:bg-gray-700');
+      dot.classList.add('bg-green-700');
+      if (step > 1) {
+        const pct = ((step - 1)/(MAX_STEPS-1))*100;
+        progressFill.style.width = `${pct}%`;
+      }
+      if (step === MAX_STEPS) fetchBtn.textContent = "¿Obtener nuevas señales?";
+
+      // ocultar mensaje y reactivar botones
+      loadingText.classList.remove('opacity-100');
+      fetchBtn.disabled = false;
+      resetBtn.disabled = false;
+    });
+
+    // Reiniciar ciclo (sin delay)
+    resetBtn.addEventListener('click', () => {
+      loadingText.textContent = MSG_RESET;
+      loadingText.classList.add('opacity-100');
+
+      step = 0;
+      progressFill.style.width = '0%';
+      for (let i = 1; i <= MAX_STEPS; i++) {
+        const resetDot = document.getElementById(`dot${i}`);
+        resetDot.classList.remove('bg-green-700');
+        resetDot.classList.add('bg-gray-300','dark:bg-gray-700');
+      }
+      balls.forEach(b => b.classList.remove('invisible'));
+      fetchBtn.textContent = "Obtener señal";
+
+      loadingText.classList.remove('opacity-100');
+      fetchBtn.disabled = false;
+      resetBtn.disabled = false;
+    });
   </script>
 </body>
 </html>
