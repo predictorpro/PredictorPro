@@ -175,12 +175,14 @@
     />
   </a>
 
-  <script>
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      themeToggle.textContent =
-        document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
-    }
+ <script>
+  document.documentElement.classList.add('dark');
+  themeToggle.textContent = '🌞'; // Иконка солнца при тёмной теме по умолчанию
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+  }
     document.documentElement.classList.add('dark');
 
     document.querySelectorAll('.toggle-btn').forEach(btn => {
