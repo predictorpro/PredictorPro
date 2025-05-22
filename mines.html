@@ -84,13 +84,14 @@
     </button>
   </main>
 
-  <script>
-    // Tema oscuro por defecto
-    document.documentElement.classList.add('dark');
-    function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
-      themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
-    }
+<script>
+  document.documentElement.classList.add('dark');
+  themeToggle.textContent = '🌞'; // Иконка солнца при тёмной теме по умолчанию
+
+  function toggleTheme() {
+    document.documentElement.classList.toggle('dark');
+    themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+  }
 
     // FAQs: mostrar/ocultar
     const faqBtn = document.getElementById('faqButton');
