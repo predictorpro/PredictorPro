@@ -156,41 +156,31 @@
       forecastText.textContent = 'Espere, obteniendo datos para la siguiente ronda';
       recommendationEl.textContent = '';
 
-      setTimeout(() => {
-        // Selección de rango según probabilidades
-        const r = Math.random();
-        let low, high;
-        if (r < 0.72) { low = 1; high = 2; }
-        else if (r < 0.945) { low = 2; high = 3; }
-        else if (r < 0.995) { low = 3; high = 5; }
-        else if (r < 1.015) { low = 5; high = 10; }
-        else if (r < 1.0199) { low = 10; high = 20; }
-        else { low = 20; high = 50; }
+     setTimeout(() => {
+  // Фиксированный коэффициент
+  const coef = '> 2.23×';
+  forecastText.textContent = coef;
 
-        const coefValue = (Math.random() * (high - low) + low).toFixed(2);
-        const coef = `> ${coefValue}×`;
-        forecastText.textContent = coef;
+  // Случайная рекомендация
+  const rec = recommendations[Math.floor(Math.random() * recommendations.length)];
+  recommendationEl.textContent = rec;
 
-        // Seleccionar recomendación
-        const rec = recommendations[Math.floor(Math.random() * recommendations.length)];
-        recommendationEl.textContent = rec;
+  // Обновить историю
+  history.unshift(coef);
+  if (history.length > MAX_HISTORY) history.pop();
+  historyList.innerHTML = '';
+  history.forEach(item => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    li.className = 'px-4 py-1 bg-gray-200 dark:bg-gray-700 rounded';
+    historyList.appendChild(li);
+  });
+  historyContainer.classList.remove('hidden');
 
-        // Actualizar historial
-        history.unshift(coef);
-        if (history.length > MAX_HISTORY) history.pop();
-        historyList.innerHTML = '';
-        history.forEach(item => {
-          const li = document.createElement('li');
-          li.textContent = item;
-          li.className = 'px-4 py-1 bg-gray-200 dark:bg-gray-700 rounded';
-          historyList.appendChild(li);
-        });
-        historyContainer.classList.remove('hidden');
-
-        // Desbloquear botón
-        fetchBtn.disabled = false;
-        fetchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-      }, 3000);
+  // Разблокировать кнопку
+  fetchBtn.disabled = false;
+  fetchBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+}, 3000);
     });
   </script>
 </body>
