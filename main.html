@@ -22,6 +22,17 @@
     </a>
   </div>
 
+  <!-- Indicador de usuarios activos -->
+  <div class="absolute top-4 right-20 z-20 flex items-center space-x-2" aria-label="Usuarios activos en línea">
+    <!-- Punto verde con brillo -->
+    <span class="relative flex h-3 w-3">
+      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+    </span>
+    <!-- Conteo -->
+    <span id="activeUsersCount" class="text-sm font-semibold text-green-700 dark:text-green-400">—</span>
+  </div>
+
   <!-- Interruptor de tema -->
   <div class="absolute top-4 right-4 z-20">
     <button
@@ -190,6 +201,19 @@
         btn.nextElementSibling.nextElementSibling.classList.toggle('hidden');
       });
     });
+
+    // ==== Lógica del indicador de usuarios activos ====
+    const usersEl = document.getElementById('activeUsersCount');
+    function updateUsers() {
+      // Simulación de usuarios activos en un rango razonable
+      const min = 120, max = 340;
+      usersEl.textContent = Math.floor(min + Math.random() * (max - min));
+    }
+    updateUsers();
+    setInterval(updateUsers, 5000);
+    // ==================================================
   </script>
 </body>
 </html>
+
+
