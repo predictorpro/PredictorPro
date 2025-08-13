@@ -9,8 +9,35 @@
     // Activar tema oscuro por clase
     tailwind.config = { darkMode: 'class' };
   </script>
+  <style>
+    /* Fondo (tema CLARO): blanco arriba -> transición suave a verde con patrón de rombos */
+    body.diamond-bg{
+      background-color:#fff; /* fallback claro */
+      background-image:
+        linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 65%),
+        repeating-linear-gradient(45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
+        repeating-linear-gradient(-45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
+        linear-gradient(to bottom, #ecfdf5, #d1fae5);
+      background-size: auto, 40px 40px, 40px 40px, auto;
+      background-attachment: fixed;
+      background-position: top left, center, center, center;
+    }
+
+    /* Fondo (tema OSCURO): negro arriba -> transición a verde con patrón de rombos */
+    .dark body.diamond-bg{
+      background-color:#000; /* fallback oscuro */
+      background-image:
+        linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 65%),
+        repeating-linear-gradient(45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
+        repeating-linear-gradient(-45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
+        linear-gradient(to bottom, #052e16, #065f46);
+      background-size: auto, 40px 40px, 40px 40px, auto;
+      background-attachment: fixed;
+      background-position: top left, center, center, center;
+    }
+  </style>
 </head>
-<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 transition-colors relative">
+<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 transition-colors relative diamond-bg">
   <!-- Logotipo -->
   <div class="absolute top-4 left-4 z-20">
     <a href="index.html">
@@ -22,22 +49,24 @@
     </a>
   </div>
 
-  <!-- Indicador de usuarios activos -->
-  <div class="absolute top-4 right-20 z-20 flex items-center space-x-2" aria-label="Usuarios activos en línea">
+  <!-- Indicador de usuarios activos (выделение добавлено) -->
+  <div class="absolute top-7 right-20 z-20 flex items-center space-x-2 px-3 py-1 rounded-full border border-green-600/70 bg-white/60 dark:bg-white/10 backdrop-blur-md shadow-md" aria-label="Usuarios activos en línea">
     <!-- Punto verde con brillo -->
     <span class="relative flex h-3 w-3">
       <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
       <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
     </span>
+    <!-- Etiqueta (verde) -->
+    <span class="text-sm font-semibold text-green-700 dark:text-green-400">En línea</span>
     <!-- Conteo -->
     <span id="activeUsersCount" class="text-sm font-semibold text-green-700 dark:text-green-400">—</span>
   </div>
 
-  <!-- Interruptor de tema -->
+  <!-- Interruptor de tema (выделение добавлено) -->
   <div class="absolute top-4 right-4 z-20">
     <button
       id="themeToggle"
-      class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow transition-colors"
+      class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow-lg transition-colors ring-2 ring-green-600 ring-offset-2 ring-offset-transparent"
       onclick="toggleTheme()"
       aria-label="Cambiar tema"
     >🌙</button>
@@ -81,110 +110,116 @@
         </div>
       </div>
 
-      <!-- Noticias del proyecto -->
-      <h2 class="mt-16 text-xl font-semibold text-center text-black dark:text-white">
-        Noticias del proyecto
-      </h2>
-      <div class="mt-6 space-y-6">
-        <!-- Noticia 0: Victoria histórica de Jorge Reyes -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            ¡Hermanoooos, victoria histórica de Jorge Reyes!
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">13.05.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            <img src="images/vot8fd10b8.png" alt="Jorge con su nuevo auto" class="w-full mb-4 rounded" />
-            <p class="mb-2">
-              ¡Hermanoooos, hoy es fiesta total! 🎉 Quiero felicitar a mi alumno, mi amigo y mi hermano del alma — Jorge Reyes de Trujillo, que acaba de ganar el premio más grande en la historia de PredictorPro: ¡2 000 000 PEN! 😱💰
-            </p>
-            <p class="mb-2">
-              Jorge estuvo conmigo desde el inicio. Era chofer y apenas le alcanzaba para el alquiler. Pero no se quejaba — escuchaba, aprendía y seguía las señales. Sin inventar nada. Y hoy, hermanos... ¡lo logró!
-            </p>
-            <p class="mb-2">
-              🎁 En honor a su victoria, le regalo un auto nuevo, con las llaves entregadas en mano. Porque se lo merece, ¡carajo!
-            </p>
-            <p class="mb-2">
-              🔥 Y para todos mis hermanos del canal, lanzo la semana del agradecimiento:<br>
-              ✅ Si recargas desde 50 PEN, recibes +500 PEN de regalo<br>
-              ⏳ Solo por 7 días. Solo para mi gente. Solo desde aquí.
-            </p>
-            <p>
-              Esto no es suerte. Es trabajo, fe y decisiones correctas. Jorge ya ganó. ¿Y tú? Es tu momento.
-            </p>
+      <!-- Noticias del proyecto (выделение блока новостей добавлено) -->
+      <section class="mt-12 p-4 sm:p-6 rounded-2xl border-2 border-green-700/70 bg-white/60 dark:bg-black/40 backdrop-blur-md shadow-xl">
+        <h2 class="text-xl font-semibold text-center text-black dark:text-white">
+          Noticias del proyecto
+        </h2>
+        <div class="mt-6 space-y-6">
+          <!-- Noticia 0: Victoria histórica de Jorge Reyes -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+              ¡Hermanoooos, victoria histórica de Jorge Reyes!
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">13.05.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              <img src="images/vot8fd10b8.png" alt="Jorge con su nuevo auto" class="w-full mb-4 rounded" />
+              <p class="mb-2">
+                ¡Hermanoooos, hoy es fiesta total! 🎉 Quiero felicitar a mi alumno, mi amigo y mi hermano del alma — Jorge Reyes de Trujillo, que acaba de ganar el premio más grande en la historia de PredictorPro: ¡2 000 000 PEN! 😱💰
+              </p>
+              <p class="mb-2">
+                Jorge estuvo conmigo desde el inicio. Era chofer y apenas le alcanzaba para el alquiler. Pero no se quejaba — escuchaba, aprendía y seguía las señales. Sin inventar nada. Y hoy, hermanos... ¡lo logró!
+              </p>
+              <p class="mb-2">
+                🎁 En honor a su victoria, le regalo un auto nuevo, con las llaves entregadas en mano. Porque se lo merece, ¡carajo!
+              </p>
+              <p class="mb-2">
+                🔥 Y para todos mis hermanos del canal, lanzo la semana del agradecimiento:<br>
+                ✅ Si recargas desde 50 PEN, recibes +500 PEN de regalo<br>
+                ⏳ Solo por 7 días. Solo para mi gente. Solo desde aquí.
+              </p>
+              <p>
+                Esto no es suerte. Es trabajo, fe y decisiones correctas. Jorge ya ganó. ¿Y tú? Es tu momento.
+              </p>
+            </div>
+          </div>
+          <!-- Noticia 1: Aniversario del proyecto PredictorPro -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transición-colors toggle-btn">
+              Aniversario del proyecto PredictorPro
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">10.05.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              <p class="mb-2">
+                ¡Nuestro proyecto PredictorPro cumple un año! En este tiempo, cientos de participantes lograron resultados extraordinarios, cambiaron su vida y empezaron a ganar sumas importantes. Gracias a todos por su apoyo: ahora somos una gran familia que apunta a nuevas metas. Para celebrar, PredictorPro será gratuito durante todo un mes. ¡Les deseamos mucha suerte y grandes victorias!
+              </p>
+            </div>
+          </div>
+          <!-- Noticia 2: Actualización del juego “Minas” -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+              Actualización del juego «Minas»
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">08.05.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              Hoy mejoramos sustancialmente el sistema de predicciones para «Minas». Gracias a un análisis profundo de datos, nuestra precisión alcanza el 97 %. ¡Compruébalo tú mismo!
+            </div>
+          </div>
+          <!-- Noticia 3: Anuncio de la nueva función “Historial de apuestas” -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+              Anuncio de la nueva función «Historial de apuestas»
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">06.05.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              Lanzamos «Historial de apuestas»: ahora puedes revisar y analizar todas tus predicciones de cada sesión en un solo lugar.
+            </div>
+          </div>
+          <!-- Noticia 4: Desarrollo de la aplicación móvil PredictorPro -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+              Desarrollo de la aplicación móvil PredictorPro
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">04.05.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              Estamos desarrollando activamente la aplicación móvil PredictorPro. Lanzamiento previsto: 28 de mayo de 2025.
+            </div>
+          </div>
+          <!-- Noticia 5: Actualización de UI/UX: nuevos temas de diseño -->
+          <div>
+            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
+              Actualización de UI/UX: nuevos temas de diseño
+            </button>
+            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">30.04.2025</p>
+            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+              Hemos renovado la interfaz: añadimos nuevos esquemas de color, mejoramos la navegación y optimizamos los controles para una experiencia más cómoda.
+            </div>
           </div>
         </div>
-        <!-- Noticia 1: Aniversario del proyecto PredictorPro -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            Aniversario del proyecto PredictorPro
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">10.05.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            <p class="mb-2">
-              ¡Nuestro proyecto PredictorPro cumple un año! En este tiempo, cientos de participantes lograron resultados extraordinarios, cambiaron su vida y empezaron a ganar sumas importantes. Gracias a todos por su apoyo: ahora somos una gran familia que apunta a nuevas metas. Para celebrar, PredictorPro será gratuito durante todo un mes. ¡Les deseamos mucha suerte y grandes victorias!
-            </p>
-          </div>
-        </div>
-        <!-- Noticia 2: Actualización del juego “Minas” -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            Actualización del juego «Minas»
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">08.05.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            Hoy mejoramos sustancialmente el sistema de predicciones para «Minas». Gracias a un análisis profundo de datos, nuestra precisión alcanza el 97 %. ¡Compruébalo tú mismo!
-          </div>
-        </div>
-        <!-- Noticia 3: Anuncio de la nueva función “Historial de apuestas” -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            Anuncio de la nueva función «Historial de apuestas»
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">06.05.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            Lanzamos «Historial de apuestas»: ahora puedes revisar y analizar todas tus predicciones de cada sesión en un solo lugar.
-          </div>
-        </div>
-        <!-- Noticia 4: Desarrollo de la aplicación móvil PredictorPro -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            Desarrollo de la aplicación móvil PredictorPro
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">04.05.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            Estamos desarrollando activamente la aplicación móvil PredictorPro. Lanzamiento previsto: 28 de mayo de 2025.
-          </div>
-        </div>
-        <!-- Noticia 5: Actualización de UI/UX: nuevos temas de diseño -->
-        <div>
-          <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                         border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
-            Actualización de UI/UX: nuevos temas de diseño
-          </button>
-          <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">30.04.2025</p>
-          <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
-            Hemos renovado la interfaz: añadimos nuevos esquemas de color, mejoramos la navegación y optimizamos los controles para una experiencia más cómoda.
-          </div>
-        </div>
-      </div>
+      </section>
+      <!-- /Fin del bloque destacado de noticias -->
     </div>
   </main>
 
-  <!-- Botón de chat de soporte -->
-  <a href="https://t.me/Pedro_PredictorPro_bot"
-     class="absolute bottom-4 right-4 bg-gray-200 dark:bg-gray-800 p-2 rounded-full border-4 border-green-700 transition-colors z-20"
-     target="_blank" rel="noopener noreferrer">
-    <img
-      src="images/—Pngtree—technical support_3767452.png"
-      alt="Soporte"
-      class="w-16 h-16 filter dark:invert"
-    />
-  </a>
+  <!-- Botón de chat de soporte + etiqueta (ВЫДЕЛЕНО) -->
+  <div class="absolute bottom-4 right-4 z-30 flex flex-col items-center space-y-2 p-3 rounded-2xl border-2 border-green-700/70 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-xl">
+    <a href="https://t.me/Pedro_PredictorPro_bot"
+       class="bg-gray-200 dark:bg-gray-800 p-2 rounded-full border-4 border-green-700 transition-transform hover:scale-105"
+       target="_blank" rel="noopener noreferrer" aria-label="Chat de soporte">
+      <img
+        src="images/—Pngtree—technical support_3767452.png"
+        alt="Soporte"
+        class="w-16 h-16 filter dark:invert"
+      />
+    </a>
+    <span class="text-sm font-semibold text-green-700 dark:text-green-400">Chat de soporte</span>
+  </div>
 
  <script>
   document.documentElement.classList.add('dark');
@@ -205,7 +240,6 @@
     // ==== Lógica del indicador de usuarios activos ====
     const usersEl = document.getElementById('activeUsersCount');
     function updateUsers() {
-      // Simulación de usuarios activos en un rango razonable
       const min = 120, max = 340;
       usersEl.textContent = Math.floor(min + Math.random() * (max - min));
     }
