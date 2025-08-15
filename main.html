@@ -37,52 +37,54 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white px-4 transition-colors relative diamond-bg">
-  <!-- Logotipo -->
-  <div class="absolute top-4 left-4 z-20">
-    <a href="index.html">
-      <img
-        src="images/PredictorPro.jpg"
-        alt="PredictorPro"
-        class="w-48 h-48 rounded-full border-4 border-green-700"
-      />
-    </a>
-  </div>
+<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors relative diamond-bg">
 
-  <!-- Indicador de usuarios activos (выделение добавлено) -->
-  <div class="absolute top-7 right-20 z-20 flex items-center space-x-2 px-3 py-1 rounded-full border border-green-600/70 bg-white/60 dark:bg-white/10 backdrop-blur-md shadow-md" aria-label="Usuarios activos en línea">
-    <!-- Punto verde con brillo -->
-    <span class="relative flex h-3 w-3">
-      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
-      <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-    </span>
-    <!-- Etiqueta (verde) -->
-    <span class="text-sm font-semibold text-green-700 dark:text-green-400">En línea</span>
-    <!-- Conteo -->
-    <span id="activeUsersCount" class="text-sm font-semibold text-green-700 dark:text-green-400">—</span>
-  </div>
+  <!-- Barra superior fija (логотип + онлайн + тема) -->
+  <header class="fixed top-0 left-0 right-0 z-30 backdrop-blur-md bg-white/70 dark:bg-black/40 border-b border-green-700/30">
+    <div class="max-w-[74rem] mx-auto px-4 py-2 flex items-center justify-between gap-3">
+      <!-- Logotipo (адаптивные размеры) -->
+      <a href="index.html" class="shrink-0 flex items-center gap-2">
+        <img src="images/PredictorPro.jpg" alt="PredictorPro"
+             class="w-16 h-16 sm:w-24 sm:h-24 lg:w-32 lg:h-32 rounded-full border-4 border-green-700 object-cover"/>
+      </a>
 
-  <!-- Interruptor de tema (выделение добавлено) -->
-  <div class="absolute top-4 right-4 z-20">
-    <button
-      id="themeToggle"
-      class="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow-lg transition-colors ring-2 ring-green-600 ring-offset-2 ring-offset-transparent"
-      onclick="toggleTheme()"
-      aria-label="Cambiar tema"
-    >🌙</button>
-  </div>
+      <div class="flex items-center gap-3 sm:gap-4">
+        <!-- Indicador de usuarios activos -->
+        <div class="flex items-center gap-2 px-2.5 py-1 rounded-full border border-green-600/70 bg-white/60 dark:bg-white/10 shadow-md">
+          <!-- Punto verde con brillo -->
+          <span class="relative flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+          </span>
+          <!-- Текст «En línea» скрыт на XS, виден c sm -->
+          <span class="hidden sm:inline text-xs sm:text-sm font-semibold text-green-700 dark:text-green-400">En línea</span>
+          <!-- Счётчик -->
+          <span id="activeUsersCount" class="text-xs sm:text-sm font-semibold text-green-700 dark:text-green-400">—</span>
+        </div>
 
-  <main class="flex flex-col items-center pt-56 sm:pt-28 pb-24">
+        <!-- Переключатель темы -->
+        <button
+          id="themeToggle"
+          class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 shadow-lg transition-colors ring-2 ring-green-600 ring-offset-2 ring-offset-transparent"
+          onclick="toggleTheme()"
+          aria-label="Cambiar tema"
+        >🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Основной контент: отступ сверху под фиксированную шапку и снизу под кнопку чата -->
+  <main class="flex flex-col items-center pt-28 sm:pt-36 lg:pt-48 pb-36 sm:pb-28 px-4">
     <div class="w-full max-w-[58rem]">
       <!-- Cuadrícula de botones de juegos -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-24">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-8 lg:gap-10">
         <!-- Aviador -->
         <div class="flex flex-col items-center">
           <a href="aviator.html"
-             class="w-full sm:w-40 aspect-square bg-black rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors z-10">
+             class="w-full sm:w-40 aspect-square bg-black rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
             <img src="images/awiator-1win.png" alt="Aviador" class="w-full h-full object-contain"/>
           </a>
-          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Aviator</span>
+          <span class="mt-2 text-base sm:text-lg font-semibold text-black dark:text-white">Aviator</span>
         </div>
         <!-- Penalti -->
         <div class="flex flex-col items-center">
@@ -90,7 +92,7 @@
              class="w-full sm:w-40 aspect-square bg-blue-200 rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
             <img src="images/penaltyshootoutstreet_logo.png" alt="Penalti" class="w-full h-full object-contain"/>
           </a>
-          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Penalty</span>
+          <span class="mt-2 text-base sm:text-lg font-semibold text-black dark:text-white">Penalty</span>
         </div>
         <!-- Minas -->
         <div class="flex flex-col items-center">
@@ -98,7 +100,7 @@
              class="w-full sm:w-40 aspect-square bg-white rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
             <img src="images/images.jpg" alt="Minas" class="w-full h-full object-cover"/>
           </a>
-          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Mines</span>
+          <span class="mt-2 text-base sm:text-lg font-semibold text-black dark:text-white">Mines</span>
         </div>
         <!-- Manzanas de la Fortuna -->
         <div class="flex flex-col items-center">
@@ -106,24 +108,24 @@
              class="w-full sm:w-40 aspect-square bg-white rounded-2xl flex items-center justify-center overflow-hidden border-2 border-green-700 transition-colors">
             <img src="images/unnamed.png" alt="Manzanas de la Fortuna" class="w-full h-full object-contain"/>
           </a>
-          <span class="mt-2 text-lg font-semibold text-black dark:text-white">Apple Of Fortune</span>
+          <span class="mt-2 text-base sm:text-lg font-semibold text-black dark:text-white">Apple Of Fortune</span>
         </div>
       </div>
 
-      <!-- Noticias del proyecto (выделение блока новостей добавлено) -->
-      <section class="mt-12 p-4 sm:p-6 rounded-2xl border-2 border-green-700/70 bg-white/60 dark:bg-black/40 backdrop-blur-md shadow-xl">
-        <h2 class="text-xl font-semibold text-center text-black dark:text-white">
+      <!-- Noticias del proyecto -->
+      <section class="mt-10 sm:mt-12 p-4 sm:p-6 rounded-2xl border-2 border-green-700/70 bg-white/60 dark:bg-black/40 backdrop-blur-md shadow-xl">
+        <h2 class="text-lg sm:text-xl font-semibold text-center text-black dark:text-white">
           Noticias del proyecto
         </h2>
-        <div class="mt-6 space-y-6">
-          <!-- Noticia 0: Victoria histórica de Jorge Reyes -->
+        <div class="mt-4 sm:mt-6 space-y-6">
+          <!-- Noticia 0 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
                            border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               ¡Hermanoooos, victoria histórica de Jorge Reyes!
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">13.05.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">13.05.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               <img src="images/vot8fd10b8.png" alt="Jorge con su nuevo auto" class="w-full mb-4 rounded" />
               <p class="mb-2">
                 ¡Hermanoooos, hoy es fiesta total! 🎉 Quiero felicitar a mi alumno, mi amigo y mi hermano del alma — Jorge Reyes de Trujillo, que acaba de ganar el premio más grande en la historia de PredictorPro: ¡2 000 000 PEN! 😱💰
@@ -139,97 +141,98 @@
                 ✅ Si recargas desde 50 PEN, recibes +500 PEN de regalo<br>
                 ⏳ Solo por 7 días. Solo para mi gente. Solo desde aquí.
               </p>
-              <p>
-                Esto no es suerte. Es trabajo, fe y decisiones correctas. Jorge ya ganó. ¿Y tú? Es tu momento.
-              </p>
+              <p>Esto no es suerte. Es trabajo, fe y decisiones correctas. Jorge ya ganó. ¿Y tú? Es tu momento.</p>
             </div>
           </div>
-          <!-- Noticia 1: Aniversario del proyecto PredictorPro -->
+
+          <!-- Noticia 1 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
-                           border-2 border-green-700 dark:border-green-700 dark:text-white transición-colors toggle-btn">
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
+                           border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               Aniversario del proyecto PredictorPro
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">10.05.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">10.05.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               <p class="mb-2">
                 ¡Nuestro proyecto PredictorPro cumple un año! En este tiempo, cientos de participantes lograron resultados extraordinarios, cambiaron su vida y empezaron a ganar sumas importantes. Gracias a todos por su apoyo: ahora somos una gran familia que apunta a nuevas metas. Para celebrar, PredictorPro será gratuito durante todo un mes. ¡Les deseamos mucha suerte y grandes victorias!
               </p>
             </div>
           </div>
-          <!-- Noticia 2: Actualización del juego “Minas” -->
+
+          <!-- Noticia 2 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
                            border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               Actualización del juego «Minas»
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">08.05.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">08.05.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               Hoy mejoramos sustancialmente el sistema de predicciones para «Minas». Gracias a un análisis profundo de datos, nuestra precisión alcanza el 97 %. ¡Compruébalo tú mismo!
             </div>
           </div>
-          <!-- Noticia 3: Anuncio de la nueva función “Historial de apuestas” -->
+
+          <!-- Noticia 3 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
                            border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               Anuncio de la nueva función «Historial de apuestas»
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">06.05.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">06.05.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               Lanzamos «Historial de apuestas»: ahora puedes revisar y analizar todas tus predicciones de cada sesión en un solo lugar.
             </div>
           </div>
-          <!-- Noticia 4: Desarrollo de la aplicación móvil PredictorPro -->
+
+          <!-- Noticia 4 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
                            border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               Desarrollo de la aplicación móvil PredictorPro
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">04.05.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">04.05.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               Estamos desarrollando activamente la aplicación móvil PredictorPro. Lanzamiento previsto: 28 de mayo de 2025.
             </div>
           </div>
-          <!-- Noticia 5: Actualización de UI/UX: nuevos temas de diseño -->
+
+          <!-- Noticia 5 -->
           <div>
-            <button class="w-full py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-6 
+            <button class="w-full py-3 sm:py-4 bg-gray-200 dark:bg-gray-800 rounded-lg text-left px-4 sm:px-6 
                            border-2 border-green-700 dark:border-green-700 dark:text-white transition-colors toggle-btn">
               Actualización de UI/UX: nuevos temas de diseño
             </button>
-            <p class="mt-1 ml-6 text-sm text-gray-600 dark:text-gray-400">30.04.2025</p>
-            <div class="mt-2 px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
+            <p class="mt-1 ml-4 sm:ml-6 text-xs sm:text-sm text-gray-600 dark:text-gray-400">30.04.2025</p>
+            <div class="mt-2 px-4 sm:px-6 py-4 bg-gray-50 dark:bg-gray-900 rounded-lg hidden article">
               Hemos renovado la interfaz: añadimos nuevos esquemas de color, mejoramos la navegación y optimizamos los controles para una experiencia más cómoda.
             </div>
           </div>
         </div>
       </section>
-      <!-- /Fin del bloque destacado de noticias -->
     </div>
   </main>
 
-  <!-- Botón de chat de soporte + etiqueta (ВЫДЕЛЕНО) -->
-  <div class="absolute bottom-4 right-4 z-30 flex flex-col items-center space-y-2 p-3 rounded-2xl border-2 border-green-700/70 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-xl">
+  <!-- Botón de chat de soporte + etiqueta (закреплено снизу справа) -->
+  <div class="fixed bottom-4 right-4 z-30 flex flex-col items-center space-y-2 p-3 rounded-2xl border-2 border-green-700/70 bg-white/70 dark:bg-white/10 backdrop-blur-md shadow-xl">
     <a href="https://t.me/Pedro_PredictorPro_bot"
        class="bg-gray-200 dark:bg-gray-800 p-2 rounded-full border-4 border-green-700 transition-transform hover:scale-105"
        target="_blank" rel="noopener noreferrer" aria-label="Chat de soporte">
       <img
         src="images/—Pngtree—technical support_3767452.png"
         alt="Soporte"
-        class="w-16 h-16 filter dark:invert"
+        class="w-14 h-14 sm:w-16 sm:h-16 filter dark:invert"
       />
     </a>
-    <span class="text-sm font-semibold text-green-700 dark:text-green-400">Chat de soporte</span>
+    <span class="text-xs sm:text-sm font-semibold text-green-700 dark:text-green-400">Chat de soporte</span>
   </div>
 
- <script>
-  document.documentElement.classList.add('dark');
-  themeToggle.textContent = '🌞'; // Иконка солнца при тёмной теме по умолчанию
-
-  function toggleTheme() {
-    document.documentElement.classList.toggle('dark');
-    themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
-  }
+  <script>
     document.documentElement.classList.add('dark');
+    themeToggle.textContent = '🌞'; // Иконка солнца при тёмной теме по умолчанию
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle('dark');
+      themeToggle.textContent = document.documentElement.classList.contains('dark') ? '🌞' : '🌙';
+    }
 
     document.querySelectorAll('.toggle-btn').forEach(btn => {
       btn.addEventListener('click', () => {
@@ -249,5 +252,6 @@
   </script>
 </body>
 </html>
+
 
 
