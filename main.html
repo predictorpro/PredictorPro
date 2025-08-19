@@ -10,32 +10,43 @@
     tailwind.config = { darkMode: 'class' };
   </script>
   <style>
-    /* Fondo (tema CLARO): blanco arriba -> transición suave a verde con patrón de rombos */
-    body.diamond-bg{
-      background-color:#fff; /* fallback claro */
-      background-image:
-        linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 65%),
-        repeating-linear-gradient(45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
-        repeating-linear-gradient(-45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
-        linear-gradient(to bottom, #ecfdf5, #d1fae5);
-      background-size: auto, 40px 40px, 40px 40px, auto;
-      background-attachment: fixed, fixed, fixed, fixed; /* статичный фон по слоям */
-      background-position: top left, center, center, center;
-    }
+  /* Переносим фон с body на фиксированный слой, чтобы он не «ездил» на мобилках */
+  body.diamond-bg{
+    background: none !important; /* отключаем прежний фон у body */
+    position: relative;          /* базовый контекст для псевдо-элемента */
+  }
 
-    /* Fondo (tema OSCURO): negro arriba -> transición a verde con patrón de rombos */
-    .dark body.diamond-bg{
-      background-color:#000; /* fallback oscuro */
-      background-image:
-        linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 65%),
-        repeating-linear-gradient(45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
-        repeating-linear-gradient(-45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
-        linear-gradient(to bottom, #052e16, #065f46);
-      background-size: auto, 40px 40px, 40px 40px, auto;
-      background-attachment: fixed, fixed, fixed, fixed; /* статичный фон по слоям */
-      background-position: top left, center, center, center;
-    }
-  </style>
+  /* Фон (светлая тема) — фиксированный слой позади контента */
+  body.diamond-bg::before{
+    content:"";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    /* те же слои, что были у светлой темы */
+    background-color:#fff; /* fallback claro */
+    background-image:
+      linear-gradient(to bottom, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 40%, rgba(255,255,255,0.85) 50%, rgba(255,255,255,0) 65%),
+      repeating-linear-gradient(45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
+      repeating-linear-gradient(-45deg, rgba(22,163,74,.15) 0 12px, rgba(22,163,74,0) 12px 24px),
+      linear-gradient(to bottom, #ecfdf5, #d1fae5);
+    background-size: auto, 40px 40px, 40px 40px, auto;
+    background-position: top left, center, center, center;
+  }
+
+  /* Фон (тёмная тема) — тот же слой, но с тёмными градиентами */
+  .dark body.diamond-bg::before{
+    background-color:#000; /* fallback oscuro */
+    background-image:
+      linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 40%, rgba(0,0,0,0.85) 50%, rgba(0,0,0,0) 65%),
+      repeating-linear-gradient(45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
+      repeating-linear-gradient(-45deg, rgba(22,163,74,.25) 0 12px, rgba(22,163,74,0) 12px 24px),
+      linear-gradient(to bottom, #052e16, #065f46);
+    background-size: auto, 40px 40px, 40px 40px, auto;
+    background-position: top left, center, center, center;
+  }
+</style>
+
 </head>
 <body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white transition-colors relative diamond-bg">
 
