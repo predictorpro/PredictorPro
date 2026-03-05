@@ -667,7 +667,7 @@
     }
   </style>
 </head>
-<body class="min-h-screen bg-white dark:bg-black text-gray-900 dark:text-white relative diamond-bg">
+<body class="min-h-screen flex flex-col bg-white dark:bg-black text-gray-900 dark:text-white relative diamond-bg" style="min-height:100dvh;">
 
   <!-- Шапка -->
   <header class="fixed top-0 left-0 right-0 z-30 lgx-nav lgx-blur">
@@ -908,7 +908,7 @@
     </div>
   </div>
 
-  <main class="flex flex-col items-center pt-28 sm:pt-36 lg:pt-48 pb-44 sm:pb-28 space-y-4 px-4">
+  <main class="flex-1 flex flex-col items-center pt-28 sm:pt-36 lg:pt-48 pb-44 sm:pb-28 space-y-4 px-4">
     <div class="w-full max-w-2xl">
       <div id="aofWindow" class="relative lgx-card lgx-blur lgx-sheen p-4 sm:p-6 shadow-lg">
         <div id="aofGrid" class="grid grid-cols-6 grid-rows-10 gap-1.5 sm:gap-3 select-none"></div>
@@ -964,11 +964,13 @@
     </div>
   </div>
 
-  <div class="fixed left-0 right-0 bottom-[-1px] z-20 lgx-nav lgx-blur">
-    <div class="max-w-[74rem] mx-auto px-4 py-2 text-center text-[12px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 select-none">
-      Copyright © 2025-2026 "Predictor-Pro". <span id="rightsText">All rights reserved.</span>
-    </div>
+  <div id="pageFooterBar"
+     class="w-full lgx-nav lgx-blur mt-auto shrink-0"
+     style="border-bottom:0 !important; box-shadow:none !important; margin:0 !important;">
+  <div class="max-w-[74rem] mx-auto px-4 py-2 text-center text-[12px] sm:text-sm font-semibold text-gray-700 dark:text-gray-300 select-none">
+    Copyright © 2025-2026 "Predictor-Pro". <span id="rightsText">All rights reserved.</span>
   </div>
+</div>
 
   <script>
     const usersEl = document.getElementById('activeUsersCount');
@@ -1365,7 +1367,7 @@
       const win  = document.getElementById('aofWindow');
       const bar  = document.getElementById('aofActionsBar');
       const headerEl = document.querySelector('header');
-      const bottomBarEl = document.querySelector('.bottom-\\[-1px\\]');
+      const bottomBarEl = document.getElementById('pageFooterBar');
       if (!win || !bar || !headerEl || !bottomBarEl) return;
 
       function update(){
